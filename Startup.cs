@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using swapi.Services;
 
 namespace swapi
 {
@@ -26,6 +27,8 @@ namespace swapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<ISwapiService, SwapiService>();
+            services.AddSingleton<IGetRandomPerson, GetRandomPerson>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
