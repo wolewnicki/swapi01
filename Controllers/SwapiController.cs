@@ -17,9 +17,10 @@ namespace swapi.Controllers
         {
             _swapiService = swapiService;
         }
+
         [HttpGet]
         [Route("v1/swapi/random/{searchCriteria}")]
-        public async Task<ActionResult> GetRandomPerson(string serachCriteria)
+        public async Task<ActionResult> GetRandomPerson(string searchCriteria)
         {
             var result = await _swapiService.GetRandomPersonBasedOnSearchCriteria(searchCriteria);
 

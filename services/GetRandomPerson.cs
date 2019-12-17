@@ -4,7 +4,7 @@ using System.Text;
 using swapi.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
-
+using System.Threading.Tasks;
 
 namespace swapi.Services
 {
