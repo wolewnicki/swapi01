@@ -5,6 +5,7 @@ using swapi.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using swapi.Services;
 
 namespace swapi.Services
 {
@@ -14,7 +15,7 @@ namespace swapi.Services
         {
             using (var client = new HttpClient())
             {
-                var url = new Uri($"https://swapi.co/api/people/?search=r2");
+                var url = new Uri($"https://swapi.co/api/people/"+RandomNumber+"");
 
                 var response = await client.GetAsync(url);
 
