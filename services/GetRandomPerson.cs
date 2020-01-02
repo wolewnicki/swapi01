@@ -15,7 +15,7 @@ namespace swapi.Services
         {
             using (var client = new HttpClient())
             {
-                var url = new Uri($"https://swapi.co/api/people/"+RandomNumber+"");
+                var url = new Uri($"https://swapi.co/api/people/{RandomTest.RandomNumber()}");
 
                 var response = await client.GetAsync(url);
 

@@ -5,10 +5,14 @@ using System.Runtime.InteropServices;
 
 namespace swapi.Services{
 
-    public class RandomTest{
-        static int RandomNumber(){
-            Random random = new Random(); return random.Next(1, 90);
-    }
-        
+    public static class RandomTest
+    {
+        public static int RandomNumber()
+        {
+            var random = new Random();
+            var result = random.Next(1, 90);
+            
+            return result;
+        }
     }
 }
