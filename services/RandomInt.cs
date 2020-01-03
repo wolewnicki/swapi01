@@ -14,5 +14,12 @@ namespace swapi.Services{
             
             return result;
         }
+        public static int RandomPlanet()
+        {
+            var randomPlanet = new Random();
+            var planetResult = randomPlanet.Next(1, 62);
+
+            return planetResult;
+        }
     }
 }
