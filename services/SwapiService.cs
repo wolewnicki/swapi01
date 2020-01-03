@@ -14,9 +14,9 @@ namespace swapi.Services
         {
             _getRandomPerson = getRandomPerson;
         }
-        public async Task<PersonModel> GetRandomPersonBasedOnSearchCriteria(string searchCriteria)
+        public async Task<PersonModel> GetRandomPerson()
         {
-            return await _getRandomPerson.ReturnRandomPersonBasedOnTag(searchCriteria);
+            return await _getRandomPerson.ReturnRandomPerson();
         }
     }
 }

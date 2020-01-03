@@ -11,7 +11,7 @@ namespace swapi.Services
 {
     public class GetRandomPerson : IGetRandomPerson
     {
-        public async Task<PersonModel> ReturnRandomPersonBasedOnTag(string searchCriteria)
+        public async Task<PersonModel> ReturnRandomPerson()
         {
             using (var client = new HttpClient())
             {
