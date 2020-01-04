@@ -6,22 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using swapi.Services;
 using swapi.Models;
-using swapi.Controllers;
 
-//namespace swapi.Controllers
-//{
-//    public SwapiController(IPlanetService)
-//    {
-//        _planetService = planetService;
-//   }
-//    [HttpGet]
-//    [Route("v1/swapi/randomPlanet/")]
-//    public Task<ActionResult> GetRandomPlanet()
-//    {
-//        var planetResult = await _planetService.GetRandomPlanet();
-//
-//        return Ok(planetResult);
-//    }
-//}
+namespace swapi.Controllers
+{
+    public class PlanetController : ControllerBase
+    {
+        private readonly IPlanetService _planetService;
 
-// This is commented out so the program still compiles
+        public PlanetController(IPlanetService planetService)
+        {
+            _planetService = planetService;
+        }
+        
+        [HttpGet]
+        [Route("v1/swapi/randomPlanet")]
+
+        public async Task<ActionResult> GetRandomPlanet()
+        {
+            var PlanetResult = await _planetService.GetRandomPlanet();
+
+            return Ok(PlanetResult);
+        }
+    }
+}

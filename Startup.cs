@@ -29,6 +29,8 @@ namespace swapi
             services.AddControllers();
             services.AddSingleton<ISwapiService, SwapiService>();
             services.AddSingleton<IGetRandomPerson, GetRandomPerson>();
+            services.AddSingleton<IGetRandomPlanet, GetRandomPlanet>();
+            services.AddSingleton<IPlanetService, PlanetService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
