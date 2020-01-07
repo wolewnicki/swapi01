@@ -11,12 +11,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using swapi.Services;
+using SolrNet;
+using swapi.Models;
 
 namespace swapi
 {
-    public class Startup
+    public class LaunchApp
     {
-        public Startup(IConfiguration configuration)
+        public void SolrStart()
+        {
+            Startup.Init<Person>("https://solr:8983/solr/mycoll");
+        }
+        public LaunchApp(IConfiguration configuration)
         {
             Configuration = configuration;
         }

@@ -20,7 +20,7 @@ namespace swapi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<LaunchApp>();
                 });
     }
 }
