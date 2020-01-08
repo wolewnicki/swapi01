@@ -18,10 +18,10 @@ namespace swapi
 {
     public class LaunchApp
     {
-        public void SolrStart()
-        {
-            Startup.Init<Person>("https://solr:8983/solr/mycoll");
-        }
+        //public void SolrStart()
+        //{
+        //    Startup.Init<Person>("https://solr:8983/solr/mycoll");
+        //} This is the Old way to Init Solr
         public LaunchApp(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,6 +37,8 @@ namespace swapi
             services.AddSingleton<IGetRandomPerson, GetRandomPerson>();
             services.AddSingleton<IGetRandomPlanet, GetRandomPlanet>();
             services.AddSingleton<IPlanetService, PlanetService>();
+            services.AddSolrNet("https://solr:8983/solr/mycoll");
+            services.AddSolrNet<Person>("https://solr:8983/solr/mycoll/person");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

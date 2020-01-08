@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace swapi.Models
 {
-    public class SolrInjector
+    public class SolrInjector //: ISolrOperations<Person>
     {
         public void AddToSolr()
         {
@@ -19,8 +19,9 @@ namespace swapi.Models
                 Age = 18,
                 Sex = "Male"
             };
-           // This appears to be different on core?
-           // var solr = ServiceLocator.Current
+            //ISolrOperations<Person>.Add(N);
+            // do i have to create a document with this object??
+
         }
     }
 }
