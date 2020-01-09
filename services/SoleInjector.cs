@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace swapi.Models
+namespace swapi.Services
 {
-    public class SolrInjector //: ISolrOperations<Person>
+    public class SolrInjector
     {
+        private readonly ISolrOperations<Person> _solrPeople;
+
+        public SolrInjector(ISolrOperations<Person> solrPeople)
+        {
+            _solrPeople = solrPeople;
+        }
         public void AddToSolr()
         {
             var N = new Person
@@ -19,9 +25,9 @@ namespace swapi.Models
                 Age = 18,
                 Sex = "Male"
             };
-            //ISolrOperations<Person>.Add(N);
-            // do i have to create a document with this object??
-
+            
+            _solrPeople.Add(N);
+            _solrPeople.Commit();
         }
     }
 }
