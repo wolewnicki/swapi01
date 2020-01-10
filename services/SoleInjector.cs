@@ -4,7 +4,7 @@ using SolrNet;
 using swapi.Models;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-
+using Newtonsoft.Json;
 
 namespace swapi.Services
 {
@@ -24,10 +24,13 @@ namespace swapi.Services
                 Name = "Nico",
                 Age = 18,
                 Sex = "Male"
+
             };
-            
+
             _solrPeople.Add(N);
             _solrPeople.Commit();
+
+            var products = _solrPeople.Query(new SolrQuery("name: test"));
         }
     }
 }

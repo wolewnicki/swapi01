@@ -37,9 +37,9 @@ namespace swapi
             services.AddSingleton<IGetRandomPerson, GetRandomPerson>();
             services.AddSingleton<IGetRandomPlanet, GetRandomPlanet>();
             services.AddSingleton<IPlanetService, PlanetService>();
-            services.AddSingleton<SolrInjector>();
+            services.AddTransient<SolrInjector>();
             services.AddSolrNet("https://solr:8983/solr/mycoll");
-            services.AddSolrNet<Person>("https://solr:8983/solr/person");
+            services.AddSolrNet<Person>("https://solr:8983/solr/mycoll/person");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
