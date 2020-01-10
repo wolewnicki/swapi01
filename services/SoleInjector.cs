@@ -27,7 +27,7 @@ namespace swapi.Services
 
             };
 
-            _solrPeople.Add(N);
+            //_solrPeople.Add(C:\\swapi\\Nico.json);
             _solrPeople.Commit();
 
             var products = _solrPeople.Query(new SolrQuery("name: test"));
