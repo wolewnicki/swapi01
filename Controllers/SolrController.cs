@@ -23,9 +23,10 @@ namespace swapi.Controllers
         [HttpPost]
         [Route("v1/swapi/SendToSolr/")]
 
-        public Task<ActionResult> AddToSolr()
+        public IActionResult AddToSolr()
         {
-            var result = _solrHandler.AddToSolr();
+            _solrHandler.AddToSolr();
+            return Ok();
         }
     }    
 }
