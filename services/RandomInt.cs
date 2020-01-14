@@ -10,7 +10,7 @@ namespace swapi.Services{
         public static int RandomNumber()
         {
             var random = new Random();
-            var result = random.Next(1, 90);
+            var result = random.Next(1, 89);
             
             return result;
         }

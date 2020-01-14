@@ -20,15 +20,15 @@ namespace swapi.Services
         {
             var N = new Person
             {
-                Id = "1",
-                Name = "Nico",
-                Age = 18,
+                Id = 4,
+                Name = "Stephen",
+                Age = 25,
                 Sex = "Male"
 
             };
 
             _solrPeople.Add(N);
-            _solrPeople.Commit();
+            _solrPeople.CommitAsync();
 
         }
     }
