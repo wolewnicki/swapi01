@@ -26,12 +26,12 @@ namespace swapi.Controllers
         public async Task<ActionResult> GetRandomPerson()
         {
             var result = await _swapiService.GetRandomPerson();
-
-            AddToSolr(result);
+            result.results.ForEach(_solrHandler.AddToSolr);
 
             return Ok();
         }
-        public IActionResult AddToSolr(RootObject result)
+
+        public IActionResult AddToSolr(PersonModel result)
         {
             _solrHandler.AddToSolr(result);
             return Ok();

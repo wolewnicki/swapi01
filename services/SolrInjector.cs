@@ -10,13 +10,13 @@ namespace swapi.Services
 {
     public class SolrInjector
     {
-        private readonly ISolrOperations<RootObject> _solrPeople;
+        private readonly ISolrOperations<PersonModel> _solrPeople;
 
-        public SolrInjector(ISolrOperations<RootObject> solrPeople)
+        public SolrInjector(ISolrOperations<PersonModel> solrPeople)
         {
             _solrPeople = solrPeople;
         }
-        public void AddToSolr(RootObject indexable)
+        public void AddToSolr(PersonModel indexable)
         {
             _solrPeople.Add(indexable);
             _solrPeople.CommitAsync();
