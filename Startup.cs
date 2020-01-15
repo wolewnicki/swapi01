@@ -40,6 +40,8 @@ namespace swapi
             services.AddTransient<SolrInjector>();
             services.AddSolrNet("http://solr:8983/solr/mycoll");
             services.AddSolrNet<Person>("http://solr:8983/solr/mycoll");
+            services.AddSolrNet<RootObject>("http://solr:8983/solr/mycoll");
+            services.AddSolrNet<PersonModel>("http://solr:8983/solr/mycoll");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

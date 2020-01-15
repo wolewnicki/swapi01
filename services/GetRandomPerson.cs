@@ -6,16 +6,17 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using swapi.Services;
+using SolrNet;
 
 namespace swapi.Services
 {
     public class GetRandomPerson : IGetRandomPerson
     {
-        public async Task<PersonModel> ReturnRandomPerson()
+        public async Task<RootObject> ReturnRandomPerson()
         {
             using (var client = new HttpClient())
             {
-                var url = new Uri($"https://swapi.co/api/people/{RandomTest.RandomNumber()}");
+                var url = new Uri($"https://swapi.co/api/people/");
 
                 var response = await client.GetAsync(url);
 
@@ -24,7 +25,8 @@ namespace swapi.Services
                 {
                     json = await content.ReadAsStringAsync();
                 }
-                return JsonConvert.DeserializeObject<PersonModel>(json);
+                return JsonConvert.DeserializeObject<RootObject>(json);
+                
             }
         }
     }

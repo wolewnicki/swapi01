@@ -13,8 +13,11 @@ namespace swapi.Controllers
     {
         private readonly ISwapiService _swapiService;
 
-        public SwapiController(ISwapiService swapiService)
+        private readonly SolrInjector _solrHandler;
+
+        public SwapiController(ISwapiService swapiService, SolrInjector solrHandler)
         {
+            _solrHandler = solrHandler;
             _swapiService = swapiService;
         }
 
@@ -24,7 +27,14 @@ namespace swapi.Controllers
         {
             var result = await _swapiService.GetRandomPerson();
 
-            return Ok(result);
+            AddToSolr(result);
+
+            return Ok();
+        }
+        public IActionResult AddToSolr(RootObject result)
+        {
+            _solrHandler.AddToSolr(result);
+            return Ok();
         }
     }
 }

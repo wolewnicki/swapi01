@@ -8,6 +8,6 @@ namespace swapi.Services
 {
     public interface ISwapiService
     {
-        Task<PersonModel> GetRandomPerson();
+        Task<RootObject> GetRandomPerson();
     }
 }

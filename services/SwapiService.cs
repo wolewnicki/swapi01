@@ -14,7 +14,7 @@ namespace swapi.Services
         {
             _getRandomPerson = getRandomPerson;
         }
-        public async Task<PersonModel> GetRandomPerson()
+        public async Task<RootObject> GetRandomPerson()
         {
             return await _getRandomPerson.ReturnRandomPerson();
         }

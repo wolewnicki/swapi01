@@ -9,7 +9,7 @@ namespace swapi.Models
 {
     public class Person
     {
-        [SolrUniqueKey("id_i")]
+        [SolrUniqueKey("id")]
         public int Id { get; set; }
 
         [SolrField("name_s")]
