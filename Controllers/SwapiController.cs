@@ -11,30 +11,35 @@ namespace swapi.Controllers
 {
     public class SwapiController : ControllerBase
     {
-        private readonly ISwapiService _swapiService;
+        private readonly SwapiService _swapiService;
 
         private readonly SolrInjector _solrHandler;
 
-        public SwapiController(ISwapiService swapiService, SolrInjector solrHandler)
+        public SwapiController(SwapiService swapiService, SolrInjector solrHandler)
         {
             _solrHandler = solrHandler;
             _swapiService = swapiService;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("v1/swapi/randomPerson/")]
         public async Task<ActionResult> GetRandomPerson()
         {
-            var result = await _swapiService.GetRandomPerson();
-            result.results.ForEach(_solrHandler.AddToSolr);
+            int n = 1;
+            var JsonArray = await _swapiService.GetRandomPerson();
+            foreach (PersonModel index in JsonArray.results)
+            {
+                index.Id = n++;
+            }
 
-            return Ok();
+            JsonArray.results.ForEach(_solrHandler.AddToSolr);
+            return Ok(JsonArray.results[2]);
         }
 
-        public IActionResult AddToSolr(PersonModel result)
-        {
-            _solrHandler.AddToSolr(result);
-            return Ok();
-        }
+//         public IActionResult AddToSolr(PersonModel JsonArray)
+//         {
+//             _solrHandler.AddToSolr(JsonArray);
+//             return Ok();
+//         }
     }
 }

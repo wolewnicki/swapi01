@@ -18,7 +18,7 @@ namespace swapi.Services
         }
         public void AddToSolr(PersonModel indexable)
         {
-            _solrPeople.Add(indexable);
+            _solrPeople.AddAsync(indexable);
             _solrPeople.CommitAsync();
 
         }

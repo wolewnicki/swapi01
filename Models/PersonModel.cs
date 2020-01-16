@@ -8,7 +8,7 @@ namespace swapi.Models {
     public class PersonModel 
     {
         [SolrUniqueKey("id")]
-        public int id { get; set; }
+        public int Id { get; set; }
         [SolrField("name_s")]
         public string name { get; set; }
         [SolrField("height_s")]

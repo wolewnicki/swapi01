@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace swapi.Services
 {
-    public class SwapiService : ISwapiService
+    public class SwapiService 
     {
-        private readonly IGetRandomPerson _getRandomPerson;
+        private readonly GetRandomPerson _getRandomPerson;
 
-        public SwapiService(IGetRandomPerson getRandomPerson)
+        public SwapiService(GetRandomPerson getRandomPerson)
         {
             _getRandomPerson = getRandomPerson;
         }

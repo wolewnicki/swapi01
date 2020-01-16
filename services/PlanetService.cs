@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace swapi.Services
 {
-    public class PlanetService : IPlanetService
+    public class PlanetService
     {
-        private readonly IGetRandomPlanet _getRandomPlanet;
+        private readonly GetRandomPlanet _getRandomPlanet;
 
-        public PlanetService(IGetRandomPlanet getRandomPlanet)
+        public PlanetService(GetRandomPlanet getRandomPlanet)
         {
             _getRandomPlanet = getRandomPlanet;
         }

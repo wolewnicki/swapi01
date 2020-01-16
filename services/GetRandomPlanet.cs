@@ -9,13 +9,13 @@ using swapi.Services;
 
 namespace swapi.Services
 {
-    public class GetRandomPlanet : IGetRandomPlanet
+    public class GetRandomPlanet  
     {
         public async Task<PlanetModel> ReturnRandomPlanet()
         {
             using (var PlanetURL = new HttpClient())
             {
-                var url = new Uri($"https://swapi.co/api/planets/{RandomTest.RandomPlanet()}");
+                var url = new Uri($"https://swapi.co/api/planets/");
                 
                 var response = await PlanetURL.GetAsync(url);
 

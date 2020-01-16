@@ -11,9 +11,9 @@ namespace swapi.Controllers
 {
     public class PlanetController : ControllerBase
     {
-        private readonly IPlanetService _planetService;
+        private readonly PlanetService _planetService;
 
-        public PlanetController(IPlanetService planetService)
+        public PlanetController(PlanetService planetService)
         {
             _planetService = planetService;
         }

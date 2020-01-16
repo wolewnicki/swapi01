@@ -10,7 +10,7 @@ using SolrNet;
 
 namespace swapi.Services
 {
-    public class GetRandomPerson : IGetRandomPerson
+    public class GetRandomPerson 
     {
         public async Task<RootObject> ReturnRandomPerson()
         {
