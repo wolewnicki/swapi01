@@ -33,11 +33,10 @@ namespace swapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<SwapiService>();
             services.AddSingleton<GetRandomPerson>();
             services.AddSingleton<GetRandomPlanet>();
             services.AddSingleton<PlanetService>();
-            services.AddTransient<SolrInjector>();
+            services.AddTransient<SolrInjector<PersonModel>>();
             services.AddSolrNet("http://solr:8983/solr/mycoll");
             services.AddSolrNet<Person>("http://solr:8983/solr/mycoll");
             services.AddSolrNet<RootObject>("http://solr:8983/solr/mycoll");

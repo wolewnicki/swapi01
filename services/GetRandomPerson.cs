@@ -12,13 +12,11 @@ namespace swapi.Services
 {
     public class GetRandomPerson 
     {
-        public async Task<RootObject> ReturnRandomPerson()
+        public async Task<RootObject> ReturnRandomPerson(string SwapiUri)
         {
             using (var client = new HttpClient())
             {
-                var url = new Uri($"https://swapi.co/api/people/");
-
-                var response = await client.GetAsync(url);
+                var response = await client.GetAsync(SwapiUri);
 
                 string json;
                 using (var content = response.Content)
@@ -26,7 +24,6 @@ namespace swapi.Services
                     json = await content.ReadAsStringAsync();
                 }
                 return JsonConvert.DeserializeObject<RootObject>(json);
-                
             }
         }
     }

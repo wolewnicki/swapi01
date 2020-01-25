@@ -8,15 +8,15 @@ using Newtonsoft.Json;
 
 namespace swapi.Services
 {
-    public class SolrInjector
+    public class SolrInjector<T>
     {
-        private readonly ISolrOperations<PersonModel> _solrPeople;
+        private readonly ISolrOperations<T> _solrPeople;
 
-        public SolrInjector(ISolrOperations<PersonModel> solrPeople)
+        public SolrInjector(ISolrOperations<T> solrPeople)
         {
             _solrPeople = solrPeople;
         }
-        public void AddToSolr(PersonModel indexable)
+        public void AddToSolr(T indexable)
         {
             _solrPeople.AddAsync(indexable);
             _solrPeople.CommitAsync();
@@ -24,3 +24,4 @@ namespace swapi.Services
         }
     }
 }
+
