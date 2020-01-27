@@ -11,40 +11,39 @@ namespace swapi.Controllers
 {
     public class SwapiController : ControllerBase
     {
-        private readonly GetRandomPerson _GetRandomPerson;
+        private readonly GetSwapiData<RootObject> _GetSwapiData;
 
-        private readonly SolrInjector<PersonModel> _solrHandler;
+        private readonly SolrInjector<PlanetModel> _solrHandler;
 
-        public SwapiController(GetRandomPerson GetRandomPerson, SolrInjector<PersonModel> solrHandler)
+        public SwapiController(GetSwapiData<RootObject> GetSwapiData, SolrInjector<PlanetModel> solrHandler)
         {
             _solrHandler = solrHandler;
-            _GetRandomPerson = GetRandomPerson;
+            _GetSwapiData = GetSwapiData;
         }
 
         [HttpPost]
         [Route("v1/swapi/randomPerson/")]
-        public async Task<ActionResult> GetRandomPerson()
+        public async Task<ActionResult> GetSwapiData()
         {
             int n = 1;
-            int p = 1;
 
-            RootObject JsonArray = await _GetRandomPerson.ReturnRandomPerson($"https://swapi.co/api/people/?page={p}");
-            var AllPeople = new List<PersonModel>(JsonArray.results);
+            RootObject JsonArray = await _GetSwapiData.ReturnData("https://swapi.co/api/planets");
+            var AllPeople = new List<PlanetModel>(JsonArray.results);
 
 
             while(JsonArray.next != null)
             {
-                JsonArray = await _GetRandomPerson.ReturnRandomPerson(JsonArray.next);
+                JsonArray = await _GetSwapiData.ReturnData(JsonArray.next);
                 JsonArray.results.ForEach(AllPeople.Add);
 
             }
 
-            foreach (PersonModel index in AllPeople)
+            foreach (PlanetModel index in AllPeople)
             {
-                index.Id = n++;
+                index.Planet_Id = n++;
             }
             AllPeople.ForEach(_solrHandler.AddToSolr);
-            return Ok(AllPeople[68]);
+            return Ok(AllPeople[46]);
         }
     }
 }

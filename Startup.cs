@@ -33,14 +33,12 @@ namespace swapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<GetRandomPerson>();
-            services.AddSingleton<GetRandomPlanet>();
-            services.AddSingleton<PlanetService>();
-            services.AddTransient<SolrInjector<PersonModel>>();
+            services.AddTransient<SolrInjector<PlanetModel>>();
             services.AddSolrNet("http://solr:8983/solr/mycoll");
-            services.AddSolrNet<Person>("http://solr:8983/solr/mycoll");
             services.AddSolrNet<RootObject>("http://solr:8983/solr/mycoll");
             services.AddSolrNet<PersonModel>("http://solr:8983/solr/mycoll");
+            services.AddSolrNet<PlanetModel>("http://solr:8983/solr/mycoll");
+            services.AddTransient<GetSwapiData<RootObject>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

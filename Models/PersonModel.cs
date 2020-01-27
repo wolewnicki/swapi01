@@ -38,7 +38,7 @@ namespace swapi.Models {
 // this is here to be able to return a list of people from swapi
 public class RootObject
 {
-    public List<PersonModel> results { get; set; }
+    public List<PlanetModel> results { get; set; }
     public int count { get; set; }
     public string next { get; set; }
     public object previous { get; set;}

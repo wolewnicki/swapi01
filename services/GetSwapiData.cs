@@ -1,18 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using swapi.Models;
-using System.Net.Http;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
-using swapi.Services;
-using SolrNet;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace swapi.Services
 {
-    public class GetRandomPerson 
+    public class GetSwapiData<T>
     {
-        public async Task<RootObject> ReturnRandomPerson(string SwapiUri)
+        public async Task<T> ReturnData(string SwapiUri)
         {
             using (var client = new HttpClient())
             {
@@ -23,7 +19,7 @@ namespace swapi.Services
                 {
                     json = await content.ReadAsStringAsync();
                 }
-                return JsonConvert.DeserializeObject<RootObject>(json);
+                return JsonConvert.DeserializeObject<T>(json);
             }
         }
     }
