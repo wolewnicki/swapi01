@@ -22,7 +22,7 @@ namespace swapi.Controllers
         }
 
         [HttpPost]
-        [Route("v1/swapi/randomPerson/")]
+        [Route("v1/swapi/SendData/")]
         public async Task<ActionResult> GetSwapiData()
         {
             int n = 1;
