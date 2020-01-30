@@ -10,17 +10,13 @@ namespace swapi.Services
     {
         public async Task<T> ReturnData(string SwapiUri)
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync(SwapiUri);
+            using var client = new HttpClient();
+            var response = await client.GetAsync(SwapiUri);
 
-                string json;
-                using (var content = response.Content)
-                {
-                    json = await content.ReadAsStringAsync();
-                }
-                return JsonConvert.DeserializeObject<T>(json);
-            }
+            using var content = response.Content;
+            var json = await content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<T>(json);
         }
     }
 }
