@@ -7,7 +7,8 @@ namespace swapi.Models
 {
     public class PlanetModel
     {
-        [SolrUniqueKey("planet_id")]
+        [SolrUniqueKey("id")]
+        public string id { get => $"planet-{Planet_Id}"; }
         public int Planet_Id { get; set; }
         [SolrField("name_s")]
         public string name { get; set;}
