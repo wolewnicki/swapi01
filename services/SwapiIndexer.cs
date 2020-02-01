@@ -2,27 +2,28 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using swapi.Models;
 
 namespace swapi.Services
 {
-    public class SwapiIndexer<T, U>
+    public class SwapiIndexer<T> where T : IBaseSwapiModel
     {
-        private readonly GetSwapiData<T> _getSwapiData;
+        private readonly GetData<T> _getSwapiData;
 
-        private readonly SolrInjector<U> _solrHandler;
+        private readonly SolrInjector<T> _solrHandler;
 
-        public SwapiIndexer(GetSwapiData<T> getSwapiData, SolrInjector<U> solrHandler)
+        public SwapiIndexer(GetData<T> getSwapiData, SolrInjector<T> solrHandler)
         {
             _getSwapiData = getSwapiData;
             _solrHandler = solrHandler;
         }
 
-        public async Task<ActionResult> ReturnCompleteSwapiList(string Uri)
+        public async Task<List<T>> ReturnCompleteSwapiList(string Tri)
         {
             int n = 1;
 
-            T JsonArray = await _getSwapiData.ReturnData(Uri);
-            var AllItems = new List<U>(JsonArray.results);
+            RootObject<T> JsonArray = await _getSwapiData.ReturnData(Tri);
+            var AllItems = new List<T>(JsonArray.results);
 
             while(JsonArray.next != null)
             {
@@ -30,12 +31,12 @@ namespace swapi.Services
                 JsonArray.results.ForEach(AllItems.Add);
             }
 
-            foreach(U index in AllItems)
+            foreach(T index in AllItems)
             {
-                index.Uid = n++;
+                index.TempId = n++;
             }
             AllItems.ForEach(_solrHandler.AddToSolr);
-            return OkResult();
+            return AllItems; 
         }
     }
 }

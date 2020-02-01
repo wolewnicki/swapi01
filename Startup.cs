@@ -35,10 +35,10 @@ namespace swapi
             services.AddControllers();
             services.AddTransient<SolrInjector<PlanetModel>>();
             services.AddSolrNet("http://solr:8983/solr/mycoll");
-            services.AddSolrNet<RootObject>("http://solr:8983/solr/mycoll");
-            services.AddSolrNet<PersonModel>("http://solr:8983/solr/mycoll");
             services.AddSolrNet<PlanetModel>("http://solr:8983/solr/mycoll");
-            services.AddTransient<GetSwapiData<RootObject>>();
+            services.AddSolrNet<PersonModel>("http://solr:8983/solr/mycoll");
+            services.AddTransient<GetData<PlanetModel>>();
+            services.AddTransient<SwapiIndexer<PlanetModel>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

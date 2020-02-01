@@ -6,9 +6,9 @@ using System.Net.Http;
 
 namespace swapi.Services
 {
-    public class GetSwapiData<T>
+    public class GetData<T>
     {
-        public async Task<T> ReturnData(string SwapiUri)
+        public async Task<RootObject<T>> ReturnData(string SwapiUri)
         {
             using var client = new HttpClient();
             var response = await client.GetAsync(SwapiUri);
@@ -16,7 +16,7 @@ namespace swapi.Services
             using var content = response.Content;
             var json = await content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<T>(json);
+            return JsonConvert.DeserializeObject<RootObject<T>>(json);
         }
     }
 }

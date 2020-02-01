@@ -11,39 +11,19 @@ namespace swapi.Controllers
 {
     public class SwapiController : ControllerBase
     {
-        private readonly GetSwapiData<RootObject> _GetSwapiData;
+        private readonly SwapiIndexer<PlanetModel> _swapiIndexer;
 
-        private readonly SolrInjector<PlanetModel> _solrHandler;
-
-        public SwapiController(GetSwapiData<RootObject> GetSwapiData, SolrInjector<PlanetModel> solrHandler)
+        public SwapiController(SwapiIndexer<PlanetModel> swapiIndexer)
         {
-            _solrHandler = solrHandler;
-            _GetSwapiData = GetSwapiData;
+            _swapiIndexer = swapiIndexer;
         }
 
         [HttpPost]
         [Route("v1/swapi/SendData/")]
-        public async Task<ActionResult> GetSwapiData()
+        public async Task<ActionResult> swapiIndexer()
         {
-            int n = 1;
-
-            RootObject JsonArray = await _GetSwapiData.ReturnData("https://swapi.co/api/planets");
-            var AllPeople = new List<PlanetModel>(JsonArray.results);
-
-
-            while(JsonArray.next != null)
-            {
-                JsonArray = await _GetSwapiData.ReturnData(JsonArray.next);
-                JsonArray.results.ForEach(AllPeople.Add);
-
-            }
-
-            foreach (PlanetModel index in AllPeople)
-            {
-                index.Planet_Id = n++;
-            }
-            AllPeople.ForEach(_solrHandler.AddToSolr);
-            return Ok(AllPeople[46]);
+           var ObjectTest = await _swapiIndexer.ReturnCompleteSwapiList("https://swapi.co/api/planets");
+            return Ok(ObjectTest);
         }
     }
 }

@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using swapi.Models;
 using SolrNet.Attributes;
 
-namespace swapi.Models {
-    public class PersonModel 
+namespace swapi.Models
+{
+    public class PersonModel : IBaseSwapiModel 
     {
         [SolrUniqueKey("id")]
-        public string Id { get => $"person-{person_id}";}
-        public int person_id { get; set; }
+        public string Id { get => $"person-{TempId}";}
+        public int TempId { get; set; }
         [SolrField("name_s")]
         public string name { get; set; }
         [SolrField("height_s")]
@@ -34,13 +34,4 @@ namespace swapi.Models {
         public DateTime edited { get; set; }
         public string url { get; set; }
     }
-}
-
-// this is here to be able to return a list of people from swapi
-public class RootObject
-{
-    public List<PlanetModel> results { get; set; }
-    public int count { get; set; }
-    public string next { get; set; }
-    public object previous { get; set;}
 }

@@ -5,14 +5,14 @@ using SolrNet.Attributes;
 
 namespace swapi.Models
 {
-    public class PlanetModel
+    public class PlanetModel : IBaseSwapiModel
     {
         [SolrUniqueKey("id")]
-        public string id { get => $"planet-{Planet_Id}"; }
-        public int Planet_Id { get; set; }
+        public string id { get => $"planet-{TempId}"; }
+        public int TempId { get; set; }
         [SolrField("name_s")]
         public string name { get; set;}
-        [SolrField("rotation_period_i")]
+        [SolrField("rotation_period_s")]
         public string rotation_period { get; set; }
         public string orbital_period { get; set; }
         public string diameter { get; set; }
